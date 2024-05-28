@@ -1,0 +1,37 @@
+#include <gtest/gtest.h>
+#include <vector>
+using namespace std;
+vector<int> increaseVector(vector<int> vec, int n) {
+    for (int i = 0; i < vec.size(); i++) {
+        vec[i] += n;
+    }
+    return vec;
+}
+
+TEST(IncreaseVectorTest, BasicTest) {
+    vector<int> nums = { 1, 2, 3, 4, 5 };
+    int increaseBy = 10;
+
+    vector<int> result = increaseVector(nums, increaseBy);
+
+    ASSERT_EQ(result.size(), 5);
+    EXPECT_EQ(result[0], 11);
+    EXPECT_EQ(result[1], 12);
+    EXPECT_EQ(result[2], 13);
+    EXPECT_EQ(result[3], 14);
+    EXPECT_EQ(result[4], 15);
+}
+
+TEST(IncreaseVectorTest, ZeroVectorTest) {
+    vector<int> nums;
+    int increaseBy = 10;
+
+    vector<int> result = increaseVector(nums, increaseBy);
+
+    EXPECT_EQ(result.size(), 0);
+}
+
+int main(int argc, char** argv) {
+    testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}
